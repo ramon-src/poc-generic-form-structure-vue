@@ -62,6 +62,9 @@ export default {
         value: self.value || this.fields[this.name],
         placeholder: this.placeholder,
       },
+      class: {
+        ["custom-input"]: true,
+      },
       on: {
         input: function(event) {
           const value = typeof event === "object" ? event.target.value : event;

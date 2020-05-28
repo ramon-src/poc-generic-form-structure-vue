@@ -5,7 +5,7 @@ import {
   minLength,
   between,
 } from "vuelidate/lib/validators";
-import commonValidations from "~/views/Forms/properties/defaultProperties/validations";
+import commonValidations from "@/views/Forms/properties/defaultProperties/validations";
 
 export default {
   ...commonValidations,

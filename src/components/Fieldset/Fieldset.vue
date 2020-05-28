@@ -26,8 +26,10 @@ export default {
   },
   computed: {
     labelFormatted() {
-      const isRequired = this.required ? " *" : "";
-      return this.label + isRequired;
+      if (this.required) {
+        return this.label ? `${this.label} *` : "";
+      }
+      return this.label;
     },
   },
 };

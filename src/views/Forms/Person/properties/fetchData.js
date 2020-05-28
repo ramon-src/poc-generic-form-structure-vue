@@ -1,4 +1,4 @@
-import { getDataById } from "~/views/Forms/properties/defaultProperties/fetchData";
+import { getDataById } from "@/views/Forms/properties/defaultProperties/fetchData";
 
 export default {
   bla: () => {},

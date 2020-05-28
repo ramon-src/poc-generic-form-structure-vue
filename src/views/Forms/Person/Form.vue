@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import CInput from "~/components/Input/Input";
+import CInput from "@/components/Input/Input";
 
 export default {
   components: { CInput },

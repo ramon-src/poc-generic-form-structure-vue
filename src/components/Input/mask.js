@@ -1,6 +1,6 @@
 import { isFunction } from "@/helpers/checkers";
 
-export const getDynamicDigits = ({ maxDigits }) =>
+export const getDynamicDigits = ({ maxDigits = null }) =>
   Array.apply(null, { length: maxDigits || 5 })
     .map(Number.call, () => "#")
     .join("");

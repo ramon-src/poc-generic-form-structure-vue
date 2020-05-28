@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import FormContainer from "~/views/Forms/FormContainer";
-import { FORMS } from "~/views/Forms/FormFactory";
+import FormContainer from "@/views/Forms/FormContainer";
+import { FORMS } from "@/views/Forms/FormFactory";
 
 Vue.use(VueRouter);
 
