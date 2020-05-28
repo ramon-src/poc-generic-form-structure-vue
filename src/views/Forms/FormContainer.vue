@@ -16,6 +16,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
+import { isFunction } from "@/helpers/checkers";
 import makeForm from "./FormFactory";
 
 export default {
@@ -30,7 +31,6 @@ export default {
       onSubmit: null,
       components: null,
       getById: null,
-      onEdit: null,
       isLoading: true,
     };
   },
@@ -82,7 +82,6 @@ export default {
       this.fetchData = fetchData;
       this.validations = validations;
       this.getById = getById;
-      this.onEdit = onEdit;
       this.components = components;
 
       this.onSubmit = () => {
@@ -90,8 +89,12 @@ export default {
       };
 
       if (this.id) {
-        const response = await this.getById(this.id);
-        const values = this.onEdit(response);
+        let values = await this.getById(this.id);
+
+        if (isFunction(onEdit)) {
+          values = onEdit(values);
+        }
+
         this.setInitialValues({ ...initialValues, ...values });
         this.setFields({ ...initialValues, ...values });
         this.$v.$touch();

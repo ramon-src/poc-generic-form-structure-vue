@@ -9,5 +9,5 @@ export default {
   number: { tag: TheMask, mask: getDynamicDigits },
   age: { tag: TheMask, mask: "0-100" },
   alphanumeric: { tag: "input" },
-  zip: { tag: TheMask, maks: "#####-###" },
+  zip: { tag: TheMask, mask: "#####-###" },
 };
