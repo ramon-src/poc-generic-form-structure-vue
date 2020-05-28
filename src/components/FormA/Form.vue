@@ -3,6 +3,7 @@
     <CInput label="Name" name="name" required />
     <CInput label="Second name" name="secondName" required />
     <CInput label="Age" name="age" type="number" />
+    <CInput label="CPF" name="cpf" type="cpf" />
     <CInput label="Bio" name="bio" type="textarea" />
   </div>
 </template>

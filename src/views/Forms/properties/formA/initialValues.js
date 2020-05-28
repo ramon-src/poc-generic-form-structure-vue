@@ -5,5 +5,6 @@ export default {
   name: "",
   secondName: "",
   age: "",
+  cpf: "",
   bio: "",
 };

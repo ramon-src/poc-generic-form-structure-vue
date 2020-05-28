@@ -2,18 +2,27 @@
   <div class="input-container">
     <label class="input-label" :for="name">{{ labelFormatted }}</label>
     <slot></slot>
-    <div class="input-validation">{{ validations }}</div>
+    <validation
+      class="input-validation"
+      :name="name"
+      :validations="validations"
+      :isEditing="isEditing"
+    ></validation>
   </div>
 </template>
 
 <script>
+import validation from "./validation";
+
 export default {
+  components: { validation },
   props: {
     label: { type: String, default: "" },
     name: { type: String, required: true },
-    validations: { type: String, default: "" },
+    validations: { type: Object, default: () => {} },
     defaultInput: { type: Boolean },
     required: { type: Boolean, default: false },
+    isEditing: { type: Boolean, required: true },
   },
   computed: {
     labelFormatted() {

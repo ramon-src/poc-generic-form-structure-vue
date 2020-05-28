@@ -24,4 +24,7 @@ export default {
     required,
     between: between(20, 30),
   },
+  cpf: {
+    required,
+  },
 };

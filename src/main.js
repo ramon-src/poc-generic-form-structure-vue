@@ -15,8 +15,15 @@ const form = {
   state: {
     id: null,
     isEditing: false,
+    dirty: true,
     fields: {},
     initialValues: {},
+    validations: {},
+  },
+  getters: {
+    isCleanForm(state) {
+      return !state.dirty;
+    },
   },
   mutations: {
     setFields(state, fields) {
@@ -34,6 +41,12 @@ const form = {
     updateId(state, id) {
       state.id = id;
     },
+    setValidations(state, validations) {
+      state.validations = validations;
+    },
+    setIsCleanForm(state, dirty) {
+      state.dirty = dirty;
+    },
   },
   actions: {
     setFields({ commit }, fields) {
@@ -48,6 +61,10 @@ const form = {
     updateId({ commit }, id) {
       commit("updateId", id);
       commit("setIsEditing", id);
+    },
+    setValidations({ commit }, validations) {
+      commit("setValidations", validations);
+      commit("setIsCleanForm", validations.$dirty);
     },
   },
 };

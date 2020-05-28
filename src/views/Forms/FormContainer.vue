@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 import makeForm from "./FormFactory";
 
 export default {
@@ -35,9 +35,15 @@ export default {
       setFields: "form/setFields",
       setInitialValues: "form/setInitialValues",
       updateId: "form/updateId",
+      setValidations: "form/setValidations",
     }),
   },
-  computed: { ...mapState({ fields: (state) => state.form.fields }) },
+  computed: {
+    ...mapState({ fields: (state) => state.form.fields }),
+    ...mapGetters({
+      isCleanForm: "form/isCleanForm",
+    }),
+  },
   async created() {
     const {
       initialValues,
@@ -52,6 +58,7 @@ export default {
     this.setInitialValues(initialValues);
     this.setFields(initialValues);
     this.updateId(this.id);
+    this.setValidations(this.$v);
 
     this.fetchData = fetchData;
     this.validations = validations;
@@ -66,8 +73,8 @@ export default {
     if (this.id) {
       const response = await this.getById(this.id);
       const values = this.onEdit(response);
-      this.setInitialValues(values);
-      this.setFields(values);
+      this.setInitialValues({ ...initialValues, ...values });
+      this.setFields({ ...initialValues, ...values });
       this.$v.$touch();
     }
 

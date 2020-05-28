@@ -37,6 +37,8 @@ export default {
   computed: {
     ...mapState({
       fields: (state) => state.form.fields,
+      isEditing: (state) => state.form.isEditing,
+      validations: (state) => state.form.validations,
     }),
   },
   methods: {
@@ -53,6 +55,8 @@ export default {
       maxDigits: this.maxDigits,
     };
 
+    const fieldValidator = this.validations.fields[this.name];
+
     const fieldset = (child) => {
       return createElement(
         Fieldset,
@@ -61,7 +65,8 @@ export default {
             name: this.name,
             label: this.label,
             required: this.required,
-            validations: "", //this.fields[this.name],
+            validations: fieldValidator,
+            isEditing: this.isEditing,
           },
         },
         [child]
@@ -87,6 +92,8 @@ export default {
             name: self.name,
             value,
           });
+
+          fieldValidator.$touch();
         },
       },
     });
