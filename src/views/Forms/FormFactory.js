@@ -1,11 +1,11 @@
-import formA from "./properties/formA";
+import Person from "./Person/properties";
 
 export const FORMS = {
-  FORM_A: "formA",
+  PERSON: "Person",
 };
 
 const getForm = {
-  [FORMS.FORM_A]: formA,
+  [FORMS.PERSON]: Person,
 };
 
 export default (formType) => getForm[formType];

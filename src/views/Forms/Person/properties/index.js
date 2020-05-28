@@ -1,4 +1,4 @@
-import components from "~/components/FormA";
+import components from "../index";
 import fetchData, { getById } from "./fetchData";
 import initialValues from "./initialValues";
 import onSubmit from "./onSubmit";

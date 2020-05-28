@@ -11,6 +11,6 @@ export const getDataById = (id) => {
         });
       if (id == 2)
         resolve({ id, name: "Rodnei - Silva", age: 10, bio: "teste" });
-    }, 1000)
+    }, 20)
   );
 };

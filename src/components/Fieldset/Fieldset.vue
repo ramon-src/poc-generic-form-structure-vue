@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import validation from "./validation";
+import Validation from "./FieldsetValidation";
 
 export default {
-  components: { validation },
+  components: { Validation },
   props: {
     label: { type: String, default: "" },
     name: { type: String, required: true },

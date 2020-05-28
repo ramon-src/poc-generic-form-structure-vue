@@ -1,28 +1,7 @@
-import { TheMask } from "vue-the-mask";
 import { mapState, mapActions } from "vuex";
-import Fieldset from "../Fieldset";
-
-const getDynamicDigits = ({ maxDigits }) =>
-  Array.apply(null, { length: maxDigits || 5 })
-    .map(Number.call, () => "#")
-    .join("");
-
-const isFunction = (functionToCheck) =>
-  functionToCheck && {}.toString.call(functionToCheck) === "[object Function]";
-
-const customMask = (customMask, options) =>
-  isFunction(customMask) ? customMask(options) : customMask;
-
-const inputTypes = {
-  select: { tag: "select" },
-  textarea: { tag: "textarea" },
-  cpf: { tag: TheMask, mask: "###.###.###-##" },
-  cnpj: { tag: TheMask, mask: "##.###.###/####-##" },
-  number: { tag: TheMask, mask: getDynamicDigits },
-  age: { tag: TheMask, mask: "0-100" },
-  alphanumeric: { tag: "input" },
-  zip: { tag: TheMask, maks: "#####-###" },
-};
+import { customMask } from "./mask";
+import inputTypes from "./types";
+import Fieldset from "../Fieldset/Fieldset";
 
 export default {
   props: {
@@ -93,10 +72,11 @@ export default {
             value,
           });
 
-          fieldValidator.$touch();
+          if (fieldValidator) fieldValidator.$touch();
         },
       },
     });
+
     return fieldset(input);
   },
 };

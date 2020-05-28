@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import dictionary from "~/views/Forms/properties/dictionary";
+import { isFunction } from "@/helpers/checkers";
+import dictionary from "@/views/Forms/properties/dictionary";
 
 export default {
   props: {
@@ -22,7 +23,7 @@ export default {
         .filter(([key, value]) => paramsKeys.includes(key) && !value)
         .map(([key]) => {
           const dic = dictionary.pt.validations[key];
-          if (typeof dic === "function") {
+          if (isFunction(dic)) {
             return dic(this.validations.$params[key]);
           }
           return dic;
