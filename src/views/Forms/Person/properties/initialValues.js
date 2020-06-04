@@ -4,7 +4,7 @@ export default {
   ...commonInitialValues,
   name: "",
   secondName: "",
-  age: "",
+  age: [],
   cpf: "",
   bio: "",
 };

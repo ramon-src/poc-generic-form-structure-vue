@@ -1,6 +1,8 @@
 import { mapState, mapActions } from "vuex";
 import { customMask } from "./mask";
 import inputTypes from "./types";
+import slots from "./slots";
+import selectProps from "./slots/select/props";
 import Fieldset from "../Fieldset/Fieldset";
 
 export default {
@@ -11,7 +13,10 @@ export default {
     masked: { type: Boolean, default: false },
     placeholder: { type: String, default: "Digite aqui" },
     required: { type: Boolean, default: false },
+
     maxDigits: { type: Number },
+
+    ...selectProps,
   },
   computed: {
     ...mapState({
@@ -52,33 +57,45 @@ export default {
       );
     };
 
-    const input = createElement(tag, {
-      props: {
-        mask: customMask(mask, maskOptions),
-        tokens,
-        masked: this.masked,
-      },
-      domProps: {
-        value: self.value || this.fields[this.name],
-        placeholder: this.placeholder,
-      },
-      class: {
-        ["custom-input"]: true,
-      },
-      on: {
-        input: function(event) {
-          const value = typeof event === "object" ? event.target.value : event;
-          self.$emit("input", value);
+    const input = createElement(
+      tag,
+      {
+        props: {
+          mask: customMask(mask, maskOptions),
+          tokens,
+          masked: this.masked,
+          value: self.value || this.fields[this.name],
+        },
+        domProps: {
+          value: self.value || this.fields[this.name],
+          placeholder: this.placeholder,
+        },
+        class: {
+          ["custom-input"]: true,
+        },
+        on: {
+          input: function(event) {
+            const value =
+              typeof event === "object" ? event.target.value : event;
+            self.$emit("input", value);
 
-          self.updateFieldValue({
-            name: self.name,
-            value,
-          });
+            self.updateFieldValue({
+              name: self.name,
+              value,
+            });
 
-          if (fieldValidator) fieldValidator.$touch();
+            if (fieldValidator) fieldValidator.$touch();
+          },
         },
       },
-    });
+      [
+        createElement(slots, {
+          props: {
+            ...this.$props,
+          },
+        }),
+      ]
+    );
 
     return fieldset(input);
   },

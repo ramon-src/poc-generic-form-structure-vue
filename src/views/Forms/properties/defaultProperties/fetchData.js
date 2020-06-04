@@ -5,12 +5,12 @@ export const getDataById = (id) => {
         resolve({
           id,
           name: "Paula - Thais",
-          age: 22,
+          age: 25,
           cpf: "030.065.270-58",
           bio: "",
         });
       if (id == 2)
-        resolve({ id, name: "Rodnei - Silva", age: 10, bio: "teste" });
+        resolve({ id, name: "Rodnei - Silva", age: 25, bio: "teste" });
     }, 20)
   );
 };

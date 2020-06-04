@@ -1,8 +1,9 @@
 import { TheMask } from "vue-the-mask";
+import { Select } from "element-ui";
 import { getDynamicDigits } from "./mask";
 
 export default {
-  select: { tag: "select" },
+  select: { tag: Select },
   textarea: { tag: "textarea" },
   cpf: { tag: TheMask, mask: "###.###.###-##" },
   cnpj: { tag: TheMask, mask: "##.###.###/####-##" },
