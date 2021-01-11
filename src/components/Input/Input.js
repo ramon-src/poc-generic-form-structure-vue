@@ -1,9 +1,12 @@
+import Vue from "vue";
 import { mapState, mapActions } from "vuex";
 import { customMask } from "./mask";
 import inputTypes from "./types";
 import slots from "./slots";
 import selectProps from "./slots/select/props";
 import Fieldset from "../Fieldset/Fieldset";
+
+console.log("props", Vue.customInputs);
 
 export default {
   props: {
@@ -17,6 +20,7 @@ export default {
     maxDigits: { type: Number },
 
     ...selectProps,
+    // ...Vue.customInputs.props,
   },
   computed: {
     ...mapState({
@@ -31,6 +35,8 @@ export default {
     }),
   },
   render: function(createElement) {
+    console.log(this.customInputs);
+
     var self = this;
 
     const { tag, mask = "", tokens } = inputTypes[this.type];
@@ -38,6 +44,8 @@ export default {
     const maskOptions = {
       maxDigits: this.maxDigits,
     };
+
+    console.log(this.$formConfig.validationLib);
 
     const fieldValidator = this.validations.fields[this.name];
 

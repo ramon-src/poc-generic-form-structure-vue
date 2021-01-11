@@ -1,6 +1,9 @@
+// import Vue from "vue";
 import { TheMask } from "vue-the-mask";
 import { Select } from "element-ui";
 import { getDynamicDigits } from "./mask";
+
+// console.log(Vue.config);
 
 export default {
   select: { tag: Select },
@@ -11,4 +14,5 @@ export default {
   age: { tag: TheMask, mask: "0-100" },
   alphanumeric: { tag: "input" },
   zip: { tag: TheMask, mask: "#####-###" },
+  // ...Vue.config.customInput.types,
 };
